@@ -19,15 +19,16 @@ import {
     Heart,
     Shield,
     Globe,
-    Users,
-    Coffee,
-    ExternalLink,
     Sliders,
     Cog,
     Save,
     ShoppingCart,
-    Trash2
+    Trash2,
+    ExternalLink,
+    Users,
+    Coffee
 } from 'lucide-react'
+import logoImg from './assets/logo.png'
 import { openExternalLink, isElectron, electronAPI } from './lib/electron'
 import { cn } from './lib/utils'
 
@@ -1293,7 +1294,7 @@ A IA usará este texto para gerar timing baseado no ritmo de fala."
                 <div className="p-6 border-b border-zinc-800">
                     <div className="flex items-center gap-3">
                         <img
-                            src="/logo.png"
+                            src={logoImg}
                             alt="Torio Tools Scribe"
                             className="w-14 h-14 rounded-lg shadow-lg shadow-orange-500/20 object-contain bg-zinc-900"
                         />
@@ -1393,55 +1394,57 @@ A IA usará este texto para gerar timing baseado no ritmo de fala."
                 {renderContent()}
 
                 {/* Banner Carousel - só mostra na tela de criação */}
-                {currentScreen === 'create' && (
-                    <div className="p-4 border-t border-zinc-800">
-                        <div className="max-w-4xl mx-auto">
-                            <div className="relative overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800">
-                                <div
-                                    className="flex transition-transform duration-500 ease-in-out"
-                                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                                >
-                                    {carouselBanners.map((banner) => (
-                                        <div key={banner.id} className="w-full flex-shrink-0 p-6">
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
-                                                        <Zap className="w-6 h-6 text-white" />
+                {
+                    currentScreen === 'create' && (
+                        <div className="p-4 border-t border-zinc-800">
+                            <div className="max-w-4xl mx-auto">
+                                <div className="relative overflow-hidden rounded-lg bg-zinc-900 border border-zinc-800">
+                                    <div
+                                        className="flex transition-transform duration-500 ease-in-out"
+                                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                                    >
+                                        {carouselBanners.map((banner) => (
+                                            <div key={banner.id} className="w-full flex-shrink-0 p-6">
+                                                <div className="flex items-center justify-between">
+                                                    <div className="flex items-center gap-4">
+                                                        <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center">
+                                                            <Zap className="w-6 h-6 text-white" />
+                                                        </div>
+                                                        <div>
+                                                            <h4 className="font-semibold text-white">{banner.title}</h4>
+                                                            <p className="text-sm text-zinc-400">{banner.description}</p>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <h4 className="font-semibold text-white">{banner.title}</h4>
-                                                        <p className="text-sm text-zinc-400">{banner.description}</p>
-                                                    </div>
+                                                    <button
+                                                        onClick={() => openExternalLink(banner.link)}
+                                                        className="px-5 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-orange-500/20"
+                                                    >
+                                                        Ver Detalhes
+                                                        <ExternalLink className="w-4 h-4" />
+                                                    </button>
                                                 </div>
-                                                <button
-                                                    onClick={() => openExternalLink(banner.link)}
-                                                    className="px-5 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold rounded-lg transition-all flex items-center gap-2 shadow-lg shadow-orange-500/20"
-                                                >
-                                                    Ver Detalhes
-                                                    <ExternalLink className="w-4 h-4" />
-                                                </button>
                                             </div>
-                                        </div>
-                                    ))}
-                                </div>
+                                        ))}
+                                    </div>
 
-                                {/* Dots */}
-                                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
-                                    {carouselBanners.map((_, index) => (
-                                        <button
-                                            key={index}
-                                            onClick={() => setCurrentSlide(index)}
-                                            className={cn(
-                                                "h-1 rounded-full transition-all",
-                                                index === currentSlide ? "w-6 bg-orange-500" : "w-1 bg-zinc-600"
-                                            )}
-                                        />
-                                    ))}
+                                    {/* Dots */}
+                                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                                        {carouselBanners.map((_, index) => (
+                                            <button
+                                                key={index}
+                                                onClick={() => setCurrentSlide(index)}
+                                                className={cn(
+                                                    "h-1 rounded-full transition-all",
+                                                    index === currentSlide ? "w-6 bg-orange-500" : "w-1 bg-zinc-600"
+                                                )}
+                                            />
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                )}
+                    )
+                }
             </div>
         </div>
     )

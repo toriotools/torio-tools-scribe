@@ -6,11 +6,11 @@ a = Analysis(
     pathex=[],
     binaries=[],
     datas=[('H:\\dev\\torio-tools-scribe\\engine\\transcriber.py', '.'), ('H:\\dev\\torio-tools-scribe\\engine\\text_generator.py', '.')],
-    hiddenimports=['flask', 'flask_cors', 'faster_whisper', 'ctranslate2'],
+    hiddenimports=['flask', 'flask_cors', 'faster_whisper', 'ctranslate2', 'tokenizers', 'huggingface_hub'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=['matplotlib', 'scipy', 'pandas', 'PIL', 'tkinter', 'PyQt5', 'PyQt6'],
+    excludes=['torch.cuda', 'torch.distributed', 'torch.testing', 'torch.utils.tensorboard', 'torchaudio', 'torchvision', 'matplotlib', 'scipy', 'pandas', 'PIL', 'Pillow', 'tkinter', 'PyQt5', 'PyQt6', 'PySide6', 'wx', 'cv2', 'opencv-python', 'IPython', 'jupyter', 'notebook', 'pytest', 'unittest', 'doctest', 'sphinx', 'setuptools'],
     noarchive=False,
     optimize=0,
 )

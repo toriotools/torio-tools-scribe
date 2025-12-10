@@ -66,7 +66,9 @@
       "installerHeaderIcon": "assets/icons/icon.ico",
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Torio Tools Scribe"
-    }
+      "shortcutName": "Torio Tools Scribe",
+      "unicode": true
+    },
+    "compression": "maximum"
   }
 }
