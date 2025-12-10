@@ -1,0 +1,72 @@
+{
+  "name": "torio-tools-scribe",
+  "version": "12.2025.0",
+  "description": "Torio Tools Scribe - Gerador de legendas automáticas com Whisper local",
+  "main": "main.js",
+  "author": "Torio Tools",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:renderer\" \"wait-on http://localhost:3000 && electron .\"",
+    "dev:renderer": "cd renderer && npm run dev",
+    "build": "cd renderer && npm run build",
+    "start": "electron .",
+    "dist": "npm run build && electron-builder",
+    "dist:win": "npm run build && electron-builder --win"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^28.1.0",
+    "electron-builder": "^24.9.1",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.toriotools.scribe",
+    "productName": "Torio Tools Scribe",
+    "directories": {
+      "output": "output"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/dist/**/*",
+      "assets/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "engine_dist",
+        "to": "engine",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "ffmpeg-win-x86_64-v7.1.exe",
+        "to": "ffmpeg-win-x86_64-v7.1.exe"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/icons/icon.ico",
+      "uninstallerIcon": "assets/icons/icon.ico",
+      "installerHeaderIcon": "assets/icons/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Torio Tools Scribe"
+    }
+  }
+}

@@ -1,0 +1,65 @@
+# Torio Tools Scribe - .gitignore
+
+# ====================================
+# PASTAS DE BUILD E DEPENDÊNCIAS
+# ====================================
+node_modules/
+renderer/node_modules/
+engine/__pycache__/
+engine/*.pyc
+engine/build/
+engine/dist/
+engine_dist/
+dist/
+output/
+.venv/
+venv/
+*.egg-info/
+
+# ====================================
+# ARQUIVOS GRANDES (Binários)
+# ====================================
+ffmpeg*.exe
+*.exe
+*.dll
+*.pyd
+*.whl
+
+# ====================================
+# MODELOS WHISPER (Download no primeiro uso)
+# ====================================
+models/
+
+# ====================================
+# LOGS E CACHE
+# ====================================
+*.log
+*.tmp
+.cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# ====================================
+# IDE E SISTEMA
+# ====================================
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ====================================
+# ARQUIVOS SENSÍVEIS
+# ====================================
+*.env
+.env.local
+.env.production
+secrets/
+config/private/
+*.pem
+*.key
+*.p12
+*.pfx
